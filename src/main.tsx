@@ -1,4 +1,4 @@
-import { createPlugin } from "./molstar_wrapper";
+import { createMolstarPlugin } from "./molstar_wrapper";
 
 
-createPlugin(document.getElementById('app')!); // app is a <div> elementnit()
+createMolstarPlugin(document.getElementById('app')!); 

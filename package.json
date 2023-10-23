@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "molstar": "^3.34.0",
+    "molstar": "^3.41.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.62.1"
