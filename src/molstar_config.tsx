@@ -1,10 +1,32 @@
 
 import { PluginConfig } from 'molstar/lib/mol-plugin/config';
 import { DefaultPluginUISpec, PluginUISpec } from 'molstar/lib/mol-plugin-ui/spec';
+import { StructureComponentControls } from 'molstar/lib/mol-plugin-ui/structure/components';
+import { StructureMeasurementsControls } from 'molstar/lib/mol-plugin-ui/structure/measurements';
+import { StructureSourceControls } from 'molstar/lib/mol-plugin-ui/structure/source';
+import { ToggleSelectionModeButton,StructureSelectionActionsControls,StructureSelectionStatsControls } from 'molstar/lib/mol-plugin-ui/structure/selection';
 import { PluginSpec } from 'molstar/lib/mol-plugin/spec';
 import { PluginBehavior } from 'molstar/lib/mol-plugin/behavior/behavior';
+import {StructureQuickStylesControls} from 'molstar/lib/mol-plugin-ui/structure/quick-styles';
+import {VolumeStreamingControls} from 'molstar/lib/mol-plugin-ui/structure/volume'
+import {GenericEntryListControls} from 'molstar/lib/mol-plugin-ui/structure/generic'
+import { PluginUIComponent } from 'molstar/lib/mol-plugin-ui/base';
+import { BuildSvg, Icon } from 'molstar/lib/mol-plugin-ui/controls/icons';
 
 
+export class CustomStructureTools extends PluginUIComponent {
+    render() {
+        return <>
+            <div className='msp-section-header'><Icon svg={BuildSvg} />Structure Tools</div>
+            <StructureSourceControls />
+            <StructureComponentControls /> 
+             <StructureMeasurementsControls/>
+             <VolumeStreamingControls/>
+             <StructureQuickStylesControls/>
+             <GenericEntryListControls/>
+        </>;
+    }
+}
 // export const DefaultPluginSpec = (): PluginSpec => ({
 //     actions: [
 //         PluginSpec.Action(StateActions.Structure.EnableStructureCustomProps)
@@ -28,39 +50,22 @@ import { PluginBehavior } from 'molstar/lib/mol-plugin/behavior/behavior';
 //         [PluginConfig.VolumeStreaming.DefaultServer, 'https://www.ebi.ac.uk/pdbe/volume-server']
 //     ]
 // });
-import { StructureComponentControls } from 'molstar/lib/mol-plugin-ui/structure/components';
-import { StructureMeasurementsControls } from 'molstar/lib/mol-plugin-ui/structure/measurements';
-import { StructureSourceControls } from 'molstar/lib/mol-plugin-ui/structure/source';
-import { PluginUIComponent } from 'molstar/lib/mol-plugin-ui/base';
-import { BuildSvg, Icon } from 'molstar/lib/mol-plugin-ui/controls/icons';
-
-export class PDBeStructureTools extends PluginUIComponent {
-    render() {
-        return <>
-            <div className='msp-section-header'><Icon svg={BuildSvg} />Structure Tools</div>
-            <StructureSourceControls />
-            {/* <StructureComponentControls /> */}
-            {/* <StructureMeasurementsControls /> */}
-        </>;
-    }
-}
 
 export const MySpec: PluginUISpec = {
     ...DefaultPluginUISpec(),
     config: [
         [PluginConfig.Viewport.ShowControls, true],
         [PluginConfig.Viewport.ShowSettings, false],
+        [PluginConfig.VolumeStreaming.Enabled, true],
     ],
-    behaviors:[
-    ],
+    // behaviors:[
+    // ],
     components:{
 
         controls:{
-            // right:'none',
-            // left:'none'
         },
 
-        structureTools: PDBeStructureTools
+        structureTools: CustomStructureTools
 
 
             
@@ -68,9 +73,6 @@ export const MySpec: PluginUISpec = {
 
 
     },
-    actions:[
-
-    ],
     
 
     layout:{
@@ -78,8 +80,6 @@ export const MySpec: PluginUISpec = {
             isExpanded:true,
             controlsDisplay:'landscape',
         }
-    },
-    canvas3d:{
     },
 
 }
