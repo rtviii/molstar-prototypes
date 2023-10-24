@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Filling the full viewport height */
+}
+
+.header {
+  width: 100%;
+  height: 80px;
+  background-color: #eee;
+  text-align: center;
+  line-height: 80px; /* To vertically center text */
+}
+
+.content {
+  display: flex;
+  flex: 1; /* Take up remaining space */
+}
+
+.left-tab {
+  flex: 1; /* 1/4 of the width */
+  background-color: #ccc;
+  text-align: center;
+  overflow-y: auto; /* Allow vertical scrolling if content overflows */
+}
+
+#molstar-root {
+  flex: 3; /* 3/4 of the width */
+  background-color: #aaa;
+  text-align: center;
+  overflow-y: auto; /* Allow vertical scrolling if content overflows */
+}
