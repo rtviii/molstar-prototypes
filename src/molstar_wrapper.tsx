@@ -1,7 +1,6 @@
 import { useEffect, createRef } from "react";
 import { PluginUIContext } from "molstar/lib/mol-plugin-ui/context";
-// import {createPluginUI  } from "molstar/lib/mol-plugin-ui/react18";
-
+import './molstar.css'
 import { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Plugin } from 'molstar/lib/mol-plugin-ui/plugin';
@@ -22,12 +21,9 @@ export function MolStarWrapper() {
   const parent = createRef<HTMLDivElement>();
   useEffect(() => {
     async function init() {
-        window.molstar = await createPluginUI(parent.current as HTMLDivElement, MySpec);
-        const data = await window.molstar.builders.data.download(
-          { url: "https://files.rcsb.org/download/3j7z.pdb" }, /* replace with your URL */
-          { state: { isGhost: true } }
-        );
-        const trajectory = await window.molstar.builders.structure.parseTrajectory(data, "pdb");
+              window.molstar = await createPluginUI(parent.current as HTMLDivElement, MySpec);
+        const data           = await window.molstar.builders.data.download( { url: "https://files.rcsb.org/download/1lol.pdb" }, { state: { isGhost: true } } );
+        const trajectory     = await window.molstar.builders.structure.parseTrajectory(data, "pdb");
         await window.molstar.builders.structure.hierarchy.applyPreset( trajectory, "default" );
     }
 
@@ -38,7 +34,7 @@ export function MolStarWrapper() {
     };
   }, []);
 
-  return <div ref={parent} style={{ width: 640, height: 480 }}/>;
+  return <div id='molstar-wrapper' ref={parent} />;
 }
 
 // export async function createPluginUI(target: HTMLElement, spec?: PluginUISpec, options?: { onBeforeUIRender?: (ctx: PluginUIContext) => (Promise<void> | void) }) {
