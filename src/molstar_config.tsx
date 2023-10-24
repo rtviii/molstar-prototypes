@@ -29,15 +29,19 @@ export const MySpec: PluginUISpec = {
     ],
     components: {
         structureTools: CustomStructureTools,
-        hideTaskOverlay: false,
-        controls: { left: 'none',  top: 'none', bottom: 'none' },
-
+        // hideTaskOverlay: ,
+        controls: {  bottom: 'none' },
         remoteState: 'none',
+
     },
     layout: {
+        
+        
         initial: {
-            isExpanded: false,
-            showControls: true,
+            
+            controlsDisplay:'portrait',
+            // isExpanded: true,
+            showControls: false,
         },
     },
 }
